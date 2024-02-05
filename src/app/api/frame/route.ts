@@ -12,11 +12,11 @@ import {
 } from 'viem';
 import { privateKeyToAccount } from 'viem/accounts';
 
-const NEYNAR_API_KEY = process.env.NEYNAR_API_KEY;
+const NEYNAR_API_KEY = 'NEYNAR_ONCHAIN_KIT';
 const MINTER_PRIVATE_KEY = process.env.MINTER_PRIVATE_KEY as Hex | undefined;
 const HAS_KV = !!process.env.KV_URL;
 
-const transport = http(process.env.RPC_URL);
+const transport = http('https://mainnet.base.org');
 
 const publicClient = createPublicClient({
   chain: CHAIN,
