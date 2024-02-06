@@ -83,19 +83,19 @@ export async function POST(req: NextRequest): Promise<Response> {
       account: minterAccount,
     });
 
-    // if (!request) {
-    //   throw new Error('Could not simulate contract');
-    // }
+    if (!request) {
+      throw new Error('Could not simulate contract');
+    }
 
-    // try {
-    //   const hash = await walletClient.writeContract(request);
-    // } catch (error) {
-    //   if (
-    //     error instanceof TransactionExecutionError
-    //   ) {
-    //     return getResponse(ResponseType.OUT_OF_GAS);
-    //   }
-    // }
+    try {
+      const hash = await walletClient.writeContract(request);
+    } catch (error) {
+      if (
+        error instanceof TransactionExecutionError
+      ) {
+        return getResponse(ResponseType.OUT_OF_GAS);
+      }
+    }
 
     return getResponse(ResponseType.SUCCESS);
   } catch (error) {
