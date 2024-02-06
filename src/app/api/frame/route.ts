@@ -59,7 +59,8 @@ export async function POST(req: NextRequest): Promise<Response> {
       return getResponse(ResponseType.NO_ADDRESS);
     }
 
-		const minterAccount = privateKeyToAccount(MINTER_PRIVATE_KEY);
+		const pk = "0x"+MINTER_PRIVATE_KEY;
+		const minterAccount = privateKeyToAccount(pk);
 
     // Check if user has a balance
     const balance = await publicClient.readContract({
