@@ -4,7 +4,7 @@ import { getFrameMetadata } from '@coinbase/onchainkit';
 export const SITE_URL = 'https://zora-mint-frame-fawn.vercel.app';
 
 export const CHAIN = base;
-export const CONTRACT_ADDRESS = '0xC9f11a1aE22699671eE159a7bCbD42473424cF27';
+export const CONTRACT_ADDRESS = '0xf2daa2c8e2a48b490dcd6a4cde09b60cb0426873';
 
 export const FRAME_METADATA = getFrameMetadata({
   buttons: ['mint'],
