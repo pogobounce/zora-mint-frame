@@ -59,7 +59,7 @@ export async function POST(req: NextRequest): Promise<Response> {
       return getResponse(ResponseType.NO_ADDRESS);
     }
 
-		const [minterAddr] = await walletClient.getAddresses();
+		const minterAddr = privateKeyToAccount(MINTER_PRIVATE_KEY);
 
     // Check if user has a balance
     const balance = await publicClient.readContract({
@@ -73,14 +73,14 @@ export async function POST(req: NextRequest): Promise<Response> {
       return getResponse(ResponseType.ALREADY_MINTED);
     }
 
-    // Transfer airdrop
-    const { request } = await publicClient.simulateContract({
-      address: CONTRACT_ADDRESS,
-      abi: Zora1155ABI,
-      functionName: 'transfer',
-      args: [address, BigInt('1000000000000000000')],
-      account: minterAddr //privateKeyToAccount(MINTER_PRIVATE_KEY),
-    });
+    // // Transfer airdrop
+    // const { request } = await publicClient.simulateContract({
+    //   address: CONTRACT_ADDRESS,
+    //   abi: Zora1155ABI,
+    //   functionName: 'transfer',
+    //   args: [address, BigInt('1000000000000000000')],
+    //   account: minterAddr //privateKeyToAccount(MINTER_PRIVATE_KEY),
+    // });
 
     // if (!request) {
     //   throw new Error('Could not simulate contract');
