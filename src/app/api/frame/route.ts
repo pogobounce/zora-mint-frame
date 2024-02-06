@@ -78,7 +78,7 @@ export async function POST(req: NextRequest): Promise<Response> {
       address: CONTRACT_ADDRESS,
       abi: Zora1155ABI,
       functionName: 'transfer',
-      args: [address, 1000000000000000000n],
+      args: [address, BigInt('1000000000000000000')],
       account: minterAddr //privateKeyToAccount(MINTER_PRIVATE_KEY),
     });
 
