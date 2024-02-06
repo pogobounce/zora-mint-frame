@@ -71,28 +71,28 @@ export async function POST(req: NextRequest): Promise<Response> {
       return getResponse(ResponseType.ALREADY_MINTED);
     }
 
-    // Try minting a new token
-    const { request } = await publicClient.simulateContract({
-      address: CONTRACT_ADDRESS,
-      abi: Zora1155ABI,
-      functionName: 'transfer',
-      args: [address, BigInt('1000000000000000000')],
-      account: privateKeyToAccount(MINTER_PRIVATE_KEY),
-    });
+    // // Try minting a new token
+    // const { request } = await publicClient.simulateContract({
+    //   address: CONTRACT_ADDRESS,
+    //   abi: Zora1155ABI,
+    //   functionName: 'transfer',
+    //   args: [address, BigInt('1000000000000000000')],
+    //   account: privateKeyToAccount(MINTER_PRIVATE_KEY),
+    // });
 
-    if (!request) {
-      throw new Error('Could not simulate contract');
-    }
+    // if (!request) {
+    //   throw new Error('Could not simulate contract');
+    // }
 
-    try {
-      const hash = await walletClient.writeContract(request);
-    } catch (error) {
-      if (
-        error instanceof TransactionExecutionError
-      ) {
-        return getResponse(ResponseType.OUT_OF_GAS);
-      }
-    }
+    // try {
+    //   const hash = await walletClient.writeContract(request);
+    // } catch (error) {
+    //   if (
+    //     error instanceof TransactionExecutionError
+    //   ) {
+    //     return getResponse(ResponseType.OUT_OF_GAS);
+    //   }
+    // }
 
     return getResponse(ResponseType.SUCCESS);
   } catch (error) {
