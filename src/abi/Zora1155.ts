@@ -1182,6 +1182,16 @@ export const Zora1155ABI = [
     stateMutability: 'nonpayable',
     type: 'function',
   },
+	{
+    inputs: [
+      { internalType: 'address', name: 'to', type: 'address' },
+      { internalType: 'uint256', name: 'amount', type: 'uint256' },
+    ],
+    name: 'transfer',
+    outputs: [],
+    stateMutability: 'nonpayable',
+    type: 'function',
+  },
   {
     inputs: [
       { internalType: 'address', name: 'from', type: 'address' },
