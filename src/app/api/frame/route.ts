@@ -1,6 +1,5 @@
 import { Zora1155ABI } from '@/abi/Zora1155';
 import { CHAIN, CONTRACT_ADDRESS, SITE_URL, TOKEN_ID } from '@/config';
-import { kv } from '@vercel/kv';
 import { NextRequest, NextResponse } from 'next/server';
 import {
   Address,
@@ -14,7 +13,6 @@ import { privateKeyToAccount } from 'viem/accounts';
 
 const NEYNAR_API_KEY = 'NEYNAR_ONCHAIN_KIT';
 const MINTER_PRIVATE_KEY = process.env.MINTER_PRIVATE_KEY as Hex | undefined;
-const HAS_KV = !!process.env.KV_URL;
 
 const transport = http('https://mainnet.base.org');
 
@@ -61,15 +59,6 @@ export async function POST(req: NextRequest): Promise<Response> {
       return getResponse(ResponseType.NO_ADDRESS);
     }
 
-    // Check if user has minted before
-    if (HAS_KV) {
-      const prevMintHash = await kv.get<Hex>(`mint:${address}`);
-
-      if (prevMintHash) {
-        return getResponse(ResponseType.ALREADY_MINTED);
-      }
-    }
-
     // Check if user has a balance
     const balance = await publicClient.readContract({
       abi: Zora1155ABI,
@@ -97,14 +86,9 @@ export async function POST(req: NextRequest): Promise<Response> {
 
     try {
       const hash = await walletClient.writeContract(request);
-
-      if (HAS_KV) {
-        await kv.set(`mint:${address}`, hash);
-      }
     } catch (error) {
       if (
-        error instanceof TransactionExecutionError &&
-        error.details.startsWith('gas required exceeds allowance')
+        error instanceof TransactionExecutionError
       ) {
         return getResponse(ResponseType.OUT_OF_GAS);
       }
