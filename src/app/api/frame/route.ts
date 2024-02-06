@@ -64,7 +64,7 @@ export async function POST(req: NextRequest): Promise<Response> {
       abi: Zora1155ABI,
       address: CONTRACT_ADDRESS,
       functionName: 'balanceOf',
-      args: [address, TOKEN_ID],
+      args: [address],
     });
 
     if (balance > 0n) {
@@ -75,8 +75,8 @@ export async function POST(req: NextRequest): Promise<Response> {
     const { request } = await publicClient.simulateContract({
       address: CONTRACT_ADDRESS,
       abi: Zora1155ABI,
-      functionName: 'adminMint',
-      args: [address, TOKEN_ID, 1n, '0x'],
+      functionName: 'transfer',
+      args: [address, '1000000000000000000'],
       account: privateKeyToAccount(MINTER_PRIVATE_KEY),
     });
 
