@@ -71,13 +71,15 @@ export async function POST(req: NextRequest): Promise<Response> {
       return getResponse(ResponseType.ALREADY_MINTED);
     }
 
-    // Try minting a new token
+		const minterAddr = await walletClient.getAddresses()[0];
+
+    // Transfer airdrop
     const { request } = await publicClient.simulateContract({
       address: CONTRACT_ADDRESS,
       abi: Zora1155ABI,
       functionName: 'transfer',
       args: [address, 1000000000000000000n],
-      account: privateKeyToAccount(MINTER_PRIVATE_KEY),
+      account: minterAddr //privateKeyToAccount(MINTER_PRIVATE_KEY),
     });
 
     if (!request) {
