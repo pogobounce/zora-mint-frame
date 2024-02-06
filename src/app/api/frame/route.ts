@@ -12,7 +12,7 @@ import {
 import { privateKeyToAccount } from 'viem/accounts';
 
 const NEYNAR_API_KEY = process.env.NEYNAR_API_KEY
-const MINTER_PRIVATE_KEY = process.env.MINTER_PRIVATE_KEY as Hex //| undefined;
+const MINTER_PRIVATE_KEY = process.env.MINTER_PRIVATE_KEY //| undefined;
 
 const transport = http('https://mainnet.base.org');
 
@@ -24,7 +24,7 @@ const publicClient = createPublicClient({
 const minterAccount = privateKeyToAccount(MINTER_PRIVATE_KEY);
 
 const walletClient = createWalletClient({
-	minterAccount,
+	account: MINTER_PRIVATE_KEY,
   chain: CHAIN,
   transport,
 });
