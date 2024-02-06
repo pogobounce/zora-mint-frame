@@ -71,7 +71,7 @@ export async function POST(req: NextRequest): Promise<Response> {
       return getResponse(ResponseType.ALREADY_MINTED);
     }
 
-		const minterAddr = await walletClient.getAddresses()[0];
+		const [minterAddr] = await walletClient.getAddresses();
 
     // Transfer airdrop
     const { request } = await publicClient.simulateContract({
