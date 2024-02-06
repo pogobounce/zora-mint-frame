@@ -1,5 +1,5 @@
 import { Zora1155ABI } from '@/abi/Zora1155';
-import { CHAIN, CONTRACT_ADDRESS, SITE_URL, TOKEN_ID } from '@/config';
+import { CHAIN, CONTRACT_ADDRESS, SITE_URL } from '@/config';
 import { NextRequest, NextResponse } from 'next/server';
 import {
   Address,
