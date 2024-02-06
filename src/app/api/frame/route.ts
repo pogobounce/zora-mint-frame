@@ -12,7 +12,7 @@ import {
 import { privateKeyToAccount } from 'viem/accounts';
 
 const NEYNAR_API_KEY = process.env.NEYNAR_API_KEY
-const MINTER_PRIVATE_KEY = process.env.MINTER_PRIVATE_KEY //| undefined;
+const MINTER_PRIVATE_KEY = process.env.PK //| undefined;
 
 const transport = http('https://mainnet.base.org');
 
