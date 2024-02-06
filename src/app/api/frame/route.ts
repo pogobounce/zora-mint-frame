@@ -11,7 +11,7 @@ import {
 } from 'viem';
 import { privateKeyToAccount } from 'viem/accounts';
 
-const NEYNAR_API_KEY = 'NEYNAR_ONCHAIN_KIT';
+const NEYNAR_API_KEY = process.env.NEYMAR_API_KEY
 const MINTER_PRIVATE_KEY = process.env.MINTER_PRIVATE_KEY as Hex | undefined;
 
 const transport = http('https://mainnet.base.org');
