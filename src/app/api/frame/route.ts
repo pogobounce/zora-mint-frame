@@ -75,7 +75,7 @@ export async function POST(req: NextRequest): Promise<Response> {
 		const minterAccount = privateKeyToAccount(MINTER_PRIVATE_KEY);
 
     // Transfer airdrop
-    const { request } = await walletClient.simulateContract({
+    const { request } = await publicClient.simulateContract({
       address: CONTRACT_ADDRESS,
       abi: Zora1155ABI,
       functionName: 'transfer',
