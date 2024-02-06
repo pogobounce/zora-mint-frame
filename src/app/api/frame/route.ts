@@ -82,9 +82,9 @@ export async function POST(req: NextRequest): Promise<Response> {
       account: minterAddr //privateKeyToAccount(MINTER_PRIVATE_KEY),
     });
 
-    if (!request) {
-      throw new Error('Could not simulate contract');
-    }
+    // if (!request) {
+    //   throw new Error('Could not simulate contract');
+    // }
 
     // try {
     //   const hash = await walletClient.writeContract(request);
