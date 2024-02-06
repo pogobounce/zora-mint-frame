@@ -77,7 +77,7 @@ export async function POST(req: NextRequest): Promise<Response> {
 		
 
     // Transfer airdrop
-    const { request } = await publicClient.simulateContract({
+    const { request } = await walletClient.simulateContract({
       address: CONTRACT_ADDRESS,
       abi: Zora1155ABI,
       functionName: 'transfer',
