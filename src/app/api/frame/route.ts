@@ -12,7 +12,7 @@ import {
 import { privateKeyToAccount } from 'viem/accounts';
 
 const NEYNAR_API_KEY = process.env.NEYNAR_API_KEY
-const MINTER_PRIVATE_KEY = process.env.MINTER_PRIVATE_KEY as Hex | undefined;
+const MINTER_PRIVATE_KEY = process.env.MINTER_PRIVATE_KEY // as Hex | undefined;
 
 const transport = http('https://mainnet.base.org');
 
@@ -66,21 +66,21 @@ export async function POST(req: NextRequest): Promise<Response> {
       abi: Zora1155ABI,
       address: CONTRACT_ADDRESS,
       functionName: 'balanceOf',
-      args: ['0x711E1C9d73109F730F5bd92f1B4f4A61af059378'],
+      args: [address],
     });
 
     if (balance > 0n) {
       return getResponse(ResponseType.ALREADY_MINTED);
     }
 
-    // // Transfer airdrop
-    // const { request } = await publicClient.simulateContract({
-    //   address: CONTRACT_ADDRESS,
-    //   abi: Zora1155ABI,
-    //   functionName: 'transfer',
-    //   args: [address, BigInt('1000000000000000000')],
-    //   account: minterAddr //privateKeyToAccount(MINTER_PRIVATE_KEY),
-    // });
+    // Transfer airdrop
+    const { request } = await publicClient.simulateContract({
+      address: CONTRACT_ADDRESS,
+      abi: Zora1155ABI,
+      functionName: 'transfer',
+      args: [address, BigInt('1000000000000000000')],
+      account: minterAccount,
+    });
 
     // if (!request) {
     //   throw new Error('Could not simulate contract');
