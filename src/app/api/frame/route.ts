@@ -21,7 +21,10 @@ const publicClient = createPublicClient({
   transport,
 });
 
+const minterAccount = privateKeyToAccount(MINTER_PRIVATE_KEY);
+
 const walletClient = createWalletClient({
+	minterAccount,
   chain: CHAIN,
   transport,
 });
@@ -59,9 +62,6 @@ export async function POST(req: NextRequest): Promise<Response> {
       return getResponse(ResponseType.NO_ADDRESS);
     }
 
-		// const pk = `0x${MINTER_PRIVATE_KEY}`;
-		const minterAccount = privateKeyToAccount(MINTER_PRIVATE_KEY);
-
     // Check if user has a balance
     const balance = await publicClient.readContract({
       abi: Zora1155ABI,
@@ -74,13 +74,15 @@ export async function POST(req: NextRequest): Promise<Response> {
       return getResponse(ResponseType.ALREADY_MINTED);
     }
 
+		
+
     // Transfer airdrop
     const { request } = await publicClient.simulateContract({
       address: CONTRACT_ADDRESS,
       abi: Zora1155ABI,
       functionName: 'transfer',
       args: [address, BigInt('10000000000000000')],
-      account: minterAccount,
+      // account: minterAccount,
     });
 
     // if (!request) {
