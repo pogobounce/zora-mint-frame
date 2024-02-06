@@ -59,19 +59,19 @@ export async function POST(req: NextRequest): Promise<Response> {
       return getResponse(ResponseType.NO_ADDRESS);
     }
 
+		const [minterAddr] = await walletClient.getAddresses();
+
     // Check if user has a balance
     const balance = await publicClient.readContract({
       abi: Zora1155ABI,
       address: CONTRACT_ADDRESS,
       functionName: 'balanceOf',
-      args: [address],
+      args: [minterAddr],
     });
 
     if (balance > 0n) {
       return getResponse(ResponseType.ALREADY_MINTED);
     }
-
-		const [minterAddr] = await walletClient.getAddresses();
 
     // Transfer airdrop
     const { request } = await publicClient.simulateContract({
