@@ -3,13 +3,12 @@ import {
   CONTRACT_ADDRESS,
   FRAME_METADATA,
   SITE_URL,
-  TOKEN_ID,
 } from '@/config';
 import { Metadata } from 'next';
 
 export const metadata: Metadata = {
   metadataBase: SITE_URL ? new URL(SITE_URL) : undefined,
-  title: 'Free mint!',
+  title: 'Get your balddrop',
   other: FRAME_METADATA,
 };
 
@@ -23,7 +22,7 @@ export default function Home() {
         }}
       >
         <a
-          href={`https://zora.co/collect/${CHAIN.id}:${CONTRACT_ADDRESS}/${TOKEN_ID}`}
+          href={`https://warpcast.com/pogo`}
           style={{ color: 'inherit' }}
         >
           Free mint!
