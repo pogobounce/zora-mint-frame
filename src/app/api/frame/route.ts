@@ -59,14 +59,14 @@ export async function POST(req: NextRequest): Promise<Response> {
       return getResponse(ResponseType.NO_ADDRESS);
     }
 
-		const minterAddr = privateKeyToAccount(MINTER_PRIVATE_KEY);
+		const minterAccount = privateKeyToAccount(MINTER_PRIVATE_KEY);
 
     // Check if user has a balance
     const balance = await publicClient.readContract({
       abi: Zora1155ABI,
       address: CONTRACT_ADDRESS,
       functionName: 'balanceOf',
-      args: [minterAddr],
+      args: ['0x711E1C9d73109F730F5bd92f1B4f4A61af059378'],
     });
 
     if (balance > 0n) {
