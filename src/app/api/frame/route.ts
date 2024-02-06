@@ -10,9 +10,10 @@ import {
   http,
 } from 'viem';
 import { privateKeyToAccount } from 'viem/accounts';
+import { ethers } from 'ethers';
 
 const NEYNAR_API_KEY = process.env.NEYNAR_API_KEY
-const MINTER_PRIVATE_KEY = process.env.PK as String | undefined;
+const MINTER_PRIVATE_KEY = process.env.PK as `0x${string}` | undefined;
 
 const transport = http('https://mainnet.base.org');
 
