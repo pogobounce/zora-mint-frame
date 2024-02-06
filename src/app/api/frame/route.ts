@@ -21,8 +21,6 @@ const publicClient = createPublicClient({
   transport,
 });
 
-const minterAccount = privateKeyToAccount(MINTER_PRIVATE_KEY);
-
 const walletClient = createWalletClient({
 	account: MINTER_PRIVATE_KEY,
   chain: CHAIN,
@@ -74,7 +72,7 @@ export async function POST(req: NextRequest): Promise<Response> {
       return getResponse(ResponseType.ALREADY_MINTED);
     }
 
-		
+		// const minterAccount = privateKeyToAccount(MINTER_PRIVATE_KEY);
 
     // Transfer airdrop
     const { request } = await walletClient.simulateContract({
