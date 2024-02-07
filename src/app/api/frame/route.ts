@@ -74,28 +74,28 @@ export async function POST(req: NextRequest): Promise<Response> {
 
 		const minterAccount = privateKeyToAccount(MINTER_PRIVATE_KEY);
 
-    // Transfer airdrop
-    const { request } = await publicClient.simulateContract({
-      address: CONTRACT_ADDRESS,
-      abi: Zora1155ABI,
-      functionName: 'transfer',
-      args: [address, BigInt('10000000000000000')],
-      account: minterAccount,
-    });
+    // // Transfer airdrop
+    // const { request } = await publicClient.simulateContract({
+    //   address: CONTRACT_ADDRESS,
+    //   abi: Zora1155ABI,
+    //   functionName: 'transfer',
+    //   args: [address, BigInt('10000000000000000')],
+    //   account: minterAccount,
+    // });
 
-    if (!request) {
-      throw new Error('Could not simulate contract');
-    }
+    // if (!request) {
+    //   throw new Error('Could not simulate contract');
+    // }
 
-    try {
-      const hash = await walletClient.writeContract(request);
-    } catch (error) {
-      if (
-        error instanceof TransactionExecutionError
-      ) {
-        return getResponse(ResponseType.OUT_OF_GAS);
-      }
-    }
+    // try {
+    //   const hash = await walletClient.writeContract(request);
+    // } catch (error) {
+    //   if (
+    //     error instanceof TransactionExecutionError
+    //   ) {
+    //     return getResponse(ResponseType.OUT_OF_GAS);
+    //   }
+    // }
 
     return getResponse(ResponseType.SUCCESS);
   } catch (error) {
