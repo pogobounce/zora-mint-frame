@@ -8,6 +8,6 @@ export const CONTRACT_ADDRESS = '0xf2daa2c8e2a48b490dcd6a4cde09b60cb0426873';
 
 export const FRAME_METADATA = getFrameMetadata({
   buttons: ['mint'],
-  image: `${SITE_URL}/opengraph-image.png`,
+  image: `${SITE_URL}/opengraph-image.jpg`,
   post_url: `${SITE_URL}/api/frame`,
 });
