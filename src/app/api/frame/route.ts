@@ -48,9 +48,9 @@ export async function POST(req: NextRequest): Promise<Response> {
       !!status?.action?.cast?.viewer_context?.liked &&
       !!status?.action?.cast?.viewer_context?.recasted;
 
-    // if (!hasLikedAndRecasted) {
-    //   return getResponse(ResponseType.RECAST);
-    // }
+    if (!hasLikedAndRecasted) {
+      return getResponse(ResponseType.RECAST);
+    }
 
     // Check if user has an address connected
     const address: Address | undefined =
@@ -115,12 +115,12 @@ enum ResponseType {
 
 function getResponse(type: ResponseType) {
   const IMAGE = {
-    [ResponseType.SUCCESS]: 'status/success.png',
-    [ResponseType.RECAST]: 'status/recast.png',
-    [ResponseType.ALREADY_MINTED]: 'status/already-minted.png',
-    [ResponseType.NO_ADDRESS]: 'status/no-address.png',
-    [ResponseType.OUT_OF_GAS]: 'status/out-of-gas.png',
-    [ResponseType.ERROR]: 'status/error.png',
+    [ResponseType.SUCCESS]: 'status/success.jpg',
+    [ResponseType.RECAST]: 'status/recast.jpg',
+    [ResponseType.ALREADY_MINTED]: 'status/already-minted.jpg',
+    [ResponseType.NO_ADDRESS]: 'status/no-address.jpg',
+    [ResponseType.OUT_OF_GAS]: 'status/out-of-mints.jpg',
+    [ResponseType.ERROR]: 'status/error.jpg',
   }[type];
   const shouldRetry =
     type === ResponseType.ERROR || type === ResponseType.RECAST;
