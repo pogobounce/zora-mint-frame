@@ -1,7 +1,7 @@
 import { base } from 'viem/chains';
 import { getFrameMetadata } from '@coinbase/onchainkit';
 
-export const SITE_URL = 'https://zora-mint-frame-fawn.vercel.app';
+export const SITE_URL = 'https://fingerprints404.vercel.app/';
 
 export const CHAIN = base;
 export const CONTRACT_ADDRESS = '0xbd5e4ca04dcdeb296f855bf06135c484c43e17f4';
