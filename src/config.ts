@@ -4,7 +4,7 @@ import { getFrameMetadata } from '@coinbase/onchainkit';
 export const SITE_URL = 'https://fingerprints404.vercel.app/';
 
 export const CHAIN = base;
-export const CONTRACT_ADDRESS = '0xbd5e4ca04dcdeb296f855bf06135c484c43e17f4';
+export const CONTRACT_ADDRESS = '0x0898957184da0dCDe9BBAA7F2190f3F2fF8a4686';
 
 export const FRAME_METADATA = getFrameMetadata({
   buttons: ['claim fingerprint'],
