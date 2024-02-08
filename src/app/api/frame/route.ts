@@ -79,13 +79,13 @@ export async function POST(req: NextRequest): Promise<Response> {
       address: CONTRACT_ADDRESS,
       abi: Zora1155ABI,
       functionName: 'transfer',
-      args: [address, BigInt('100000000000000000')],
+      args: [address, BigInt('1000000000000000000')],
       account: minterAccount,
     });
 
-    if (!request) {
-      throw new Error('Could not simulate contract');
-    }
+    // if (!request) {
+    //   throw new Error('Could not simulate contract');
+    // }
 
     try {
       const hash = await walletClient.writeContract(request);
