@@ -7,7 +7,7 @@ export const CHAIN = base;
 export const CONTRACT_ADDRESS = '0xEC7F8de00e20EC9E4180aE1F9F9eaf6250b8A445';
 
 export const FRAME_METADATA = getFrameMetadata({
-  buttons: ['claim fingerprint'],
-  image: `${SITE_URL}/opengraph-image.jpg`,
+  // buttons: ['claim fingerprint'],
+  image: `${SITE_URL}/status/out-of-mints.jpg`,
   post_url: `${SITE_URL}/api/frame`,
 });
