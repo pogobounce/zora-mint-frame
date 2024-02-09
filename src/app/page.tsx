@@ -22,7 +22,7 @@ export default function Home() {
         }}
       >
         <a
-          href={`https://warpcast.com/pogo`}
+          href={`https://dexscreener.com/base/0x2bc487961eeb5ae27cd1cbc9163cd7ea3106d306`}
           style={{ color: 'inherit' }}
         >
           Free mint!
